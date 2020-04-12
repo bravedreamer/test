@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>React • TodoMVC</title>
+		<link rel="stylesheet" href="css/index.css" />
+	</head>
+	<body >
+		<header class="heading w">
+			<h1>todos</h1>
+		</header>
+		<section class="bodying w">
+			<header>
+				<div class="symbol" id="symbol" onclick="symboltest()">﹀</div>
+				<input type="text" class="inputing" id="inputing" placeholder="What needs to be done?">
+			</header>
+			<section class="w bodying_section" id="bodying_section">
+			</section>
+			<footer id="bodying_foot">
+				<div class="bodying_foot w">
+					<span class="iterm" id="iterm">iterms left</span>
+					<div class="btn">
+						<button onclick="allBtn()">All</button>
+						<button onclick="activing()">Actic</button>
+						<button onclick="completed()">Completed</button>
+						<button class="btn4" onclick="clear_completed()">Clear Completed</button>
+					</div>
+				</div>
+			</footer>
+		</section>
+		<footer class="footer w">
+			<div class="footer_top1" id="footer_top1"></div>
+			<div class="footer_top2" id="footer_top2"></div>
+			<p>Double-click to edit a todo</p>
+			<p>Created by <a href="https://github.com/petehunt/">petehunt</a></p>
+			<p>Part of <a href="http://todomvc.com/">TodoMVC</a></p>
+		</footer>
+		<script src="js/todos.js"></script>
+	</body>
+</html>
