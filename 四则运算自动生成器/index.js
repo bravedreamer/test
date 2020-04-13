@@ -149,8 +149,17 @@ new Vue({
 						let content=this.createQuestionInfo()
 						let answer=content.answer
 						let question=content.question
-						
-						if(answer>=0){
+						let isRepeat=false
+
+						for(let j=0;j<this.form.questionList.length;j++){
+							if(this.form.questionList[j]==question){//检查生成的题目是否重复
+								isRepeat=true
+								break;
+							}else{
+								isRepeat=false
+							}
+						}
+						if(answer>=0&&!isRepeat){
 							this.form.questionList[i]=question
 							this.form.answerList[i]=answer
 						  let tag={}
@@ -246,19 +255,25 @@ new Vue({
 		downloadQuestion(){//下载题目和答案的txt文件
 			let questionContent=""//题目内容
 			let answerContent=""//答案内容
-			if(this.form.questionList.length!=0){
-				let name1="Exercises"
-				let name2="Answers"
-				for(let i=0;i<this.form.questionList.length;i++){
-					questionContent+=(i+1)+"、"+this.form.questionList[i]+"\n"
-					answerContent+=(i+1)+"、"+this.form.answerList[i]+"\n"
+			if(this.corret!=""||this.wrong!=""){
+				if(this.form.questionList.length!=0){
+					let name1="Exercises"
+					let name2="Answers"
+					for(let i=0;i<this.form.questionList.length;i++){
+						questionContent+=(i+1)+"、"+this.form.questionList[i]+"\n"
+						answerContent+=(i+1)+"、"+this.form.answerList[i]+"\n"
+					}
+					this.download(name1,questionContent)
+					this.download(name2,answerContent)
+				}else{
+					this.$alert('题目列表为空，请重新生成题目', '', {
+							  confirmButtonText: '确定',
+							});
 				}
-				this.download(name1,questionContent)
-				this.download(name2,answerContent)
 			}else{
-				this.$alert('题目列表为空，请重新生成题目', '', {
-						  confirmButtonText: '确定',
-						});
+				this.$alert('本地已有改文件，无法再次下载', '', {
+					confirmButtonText: '确定',
+				  });
 			}
 		},
 		
