@@ -255,25 +255,19 @@ new Vue({
 		downloadQuestion(){//下载题目和答案的txt文件
 			let questionContent=""//题目内容
 			let answerContent=""//答案内容
-			if(this.corret==""||this.wrong==""){
-				if(this.form.questionList.length!=0){
-					let name1="Exercises"
-					let name2="Answers"
-					for(let i=0;i<this.form.questionList.length;i++){
-						questionContent+=(i+1)+"、"+this.form.questionList[i]+"\n"
-						answerContent+=(i+1)+"、"+this.form.answerList[i]+"\n"
-					}
-					this.download(name1,questionContent)
-					this.download(name2,answerContent)
-				}else{
-					this.$alert('题目列表为空，请重新生成题目', '', {
-							  confirmButtonText: '确定',
-							});
+			if(this.form.questionList.length!=0){
+				let name1="Exercises"
+				let name2="Answers"
+				for(let i=0;i<this.form.questionList.length;i++){
+					questionContent+=(i+1)+"、"+this.form.questionList[i]+"\n"
+					answerContent+=(i+1)+"、"+this.form.answerList[i]+"\n"
 				}
+				this.download(name1,questionContent)
+				this.download(name2,answerContent)
 			}else{
-				this.$alert('本地已有该文件，请勿重复下载', '', {
-					confirmButtonText: '确定',
-				  });
+				this.$alert('题目列表为空，请重新生成题目', '', {
+						  confirmButtonText: '确定',
+						});
 			}
 		},
 		
@@ -316,7 +310,10 @@ new Vue({
 			  let wrongList=[]//保存题目错误答案的序号
 			  let corret=""
 			  let wrong=""
-			  
+			  //初始化数据列表
+			  this.form.questionList=[]
+			  this.form.answerList=[]
+
 			  if(this.fileData.length!=0){
 				  for(let i=0;i<this.fileData.length;i++){
 					  if(this.fileData[i].includes("=")){
