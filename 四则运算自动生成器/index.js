@@ -255,7 +255,7 @@ new Vue({
 		downloadQuestion(){//下载题目和答案的txt文件
 			let questionContent=""//题目内容
 			let answerContent=""//答案内容
-			if(this.corret!=""||this.wrong!=""){
+			if(this.corret==""||this.wrong==""){
 				if(this.form.questionList.length!=0){
 					let name1="Exercises"
 					let name2="Answers"
@@ -271,7 +271,7 @@ new Vue({
 							});
 				}
 			}else{
-				this.$alert('本地已有改文件，无法再次下载', '', {
+				this.$alert('本地已有该文件，请勿重复下载', '', {
 					confirmButtonText: '确定',
 				  });
 			}
