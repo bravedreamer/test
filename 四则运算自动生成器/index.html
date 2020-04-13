@@ -63,13 +63,12 @@
 			 			<el-button @click="createQuestion()">自动生成</el-button>
 			 			<el-button @click="downloadQuestion()">下载题目</el-button>
 			 			<el-button @click="compareAnswer()">题目批改</el-button>
-						<el-upload action="/"
+						<el-upload action="https://jsonplaceholder.typicode.com/posts/"
 								class="upload-demo"
 								ref="upload"
 								accept=".txt"
 								:on-preview="handlePreview"
 								:on-remove="handleRemove"
-								:before-remove="beforeRemove"
 								:on-exceed="handleExceed"
 								multiple
 								:limit="2"
