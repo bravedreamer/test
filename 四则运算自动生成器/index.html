@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <!-- import CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+</head>
+<body>
+	<style>
+		*{
+			padding: 0;
+			margin: 0;
+		}
+		 #app{
+			  display: flex;
+			   align-items:center
+		  }
+		  .formDiv{
+			  margin-top: 150px;
+		  }
+		  .btnclass{
+			  display:flex;
+			  flex-direction: column;
+			  position: relative;
+			  bottom: 0px;
+			  margin-top: 100px;
+			  margin-bottom: 65px;
+		  }
+		  .btnclass button{
+			  padding: 20px 0px 20px 0px;
+		  }
+		  .el-button {
+			  margin: 10px;
+		  }
+		  .upload{
+			  width: 295px;
+			  background-color: white;
+			  color: black;
+		  }
+		.el-table .warning-row {
+		      background: coral;
+		}
+		  
+		.el-table .success-row {
+		      background: #f0f9eb;
+		}
+	</style>
+  <div id="app">
+	<el-container >
+	  <el-aside width="25%" style="background-color: lightseagreen">
+		 <div class="formDiv">
+			 <el-form ref="form" :model="form" label-width="80px">
+			 			<el-form-item label="运算范围:"  prop="last">
+							<el-input v-model="form.min"style="width: 35%;"></el-input>
+							<span>——</span>
+							<el-input v-model="form.max" style="width: 35%;"></el-input>
+			 			</el-form-item>
+			 			<el-form-item label="题目数量:">
+			 				<el-input v-model="form.questionNum" style="width: 30%;"></el-input>
+			 			</el-form-item>
+			 </el-form>
+			 <div class="btnclass">
+			 			<el-button @click="createQuestion()">自动生成</el-button>
+			 			<el-button @click="downloadQuestion()">下载题目</el-button>
+			 			<el-button @click="compareAnswer()">题目批改</el-button>
+						<el-upload action="/"
+								class="upload-demo"
+								ref="upload"
+								accept=".txt"
+								:on-preview="handlePreview"
+								:on-remove="handleRemove"
+								:before-remove="beforeRemove"
+								:on-exceed="handleExceed"
+								multiple
+								:limit="2"
+								:before-upload="beforeUpload"
+								:default-file-list="fileList"
+								>
+							<el-button type="primary" class="upload">上传题目</el-button>
+						</el-upload>
+			 </div>
+		 </div>
+	  </el-aside>
+	  <el-container>
+	    <el-header style="background-color:royalblue;color: white;">
+			<p>{{corret}}</p>
+			<p>{{wrong}}</p>
+		</el-header>
+	    <el-main style="height: 500px;">
+			<el-table
+			    :data="tableData"
+			    style="width: 100%"
+			    :row-class-name="tableRowClassName">
+				<el-table-column
+				  prop="index"
+				  width=100
+				  label="序号">
+				</el-table-column>
+			    <el-table-column
+			      prop="question"
+			      label="题目">
+			    </el-table-column>
+			  </el-table>
+		</el-main>
+	  </el-container>
+	</el-container>
+  </div>
+</body>
+  <!-- import Vue before Element -->
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <!-- import JavaScript -->
+  <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+  <script src="index.js"> </script>
+</html>
